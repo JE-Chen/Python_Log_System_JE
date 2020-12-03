@@ -85,7 +85,7 @@ class LogSystem:
             elif self.critical_lv >= self.board_cast_lv:
                 print("Not log in file ", str(error) + ': ' + str(args))
         except Exception as e:
-            print()
+            print(e)
 
     # ----------------------------------------------------------------------------------------------
     '''
