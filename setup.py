@@ -5,7 +5,7 @@ with open("README.md", "r") as README:
 
 setuptools.setup(
     name="JELogSystem",
-    version="0.0.0.0.2",
+    version="0.0.0.0.3",
     author="JE-Chen",
     author_email="zenmailman@gmail.com",
     description="JE use LogSystem",
