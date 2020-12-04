@@ -1,11 +1,11 @@
 import setuptools
 
-with open("README.md", "r") as README:
+with open("../README.md", "r") as README:
     long_description = README.read()
 
 setuptools.setup(
     name="JELogSystem",
-    version="0.0.0.0.3",
+    version="0.0.0.0.4",
     author="JE-Chen",
     author_email="zenmailman@gmail.com",
     description="JE use LogSystem",
