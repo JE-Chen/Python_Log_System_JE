@@ -67,7 +67,8 @@ class LogSystem:
             self.board_cast_lv = 3
         else:
             self.board_cast_lv = lv
-        return self.board_cast_lv
+            return self.board_cast_lv
+        return "Error lv"
 
         # 設置是否顯示時間
 
