@@ -65,13 +65,12 @@ class LogSystem:
     def set_board_cast_lv(self, lv):
         if lv <= -1:
             self.board_cast_lv = 3
+            return "Error lv"
         else:
             self.board_cast_lv = lv
             return self.board_cast_lv
-        return "Error lv"
 
-        # 設置是否顯示時間
-
+    # 設置是否顯示時間
     def set_time_able(self, time_able):
         self.time = time_able
         return self.time
