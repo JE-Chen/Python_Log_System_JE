@@ -43,49 +43,57 @@ class LogSystem:
     '''
 
     def normal(self, *args):
-        self.state(self.normal_lv, self.board_cast_lv, "Log", 'Normal', *args)
+        return self.state(self.normal_lv, self.board_cast_lv, "Log", 'Normal', *args)
 
     def info(self, *args):
-        self.state(self.info_lv, self.board_cast_lv, "Log", 'Info', *args)
+        return self.state(self.info_lv, self.board_cast_lv, "Log", 'Info', *args)
 
     def debug(self, *args):
-        self.state(self.debug_lv, self.board_cast_lv, "Log", 'Debug', *args)
+        return self.state(self.debug_lv, self.board_cast_lv, "Log", 'Debug', *args)
 
     def warning(self, *args):
-        self.state(self.warning_lv, self.board_cast_lv, "Log", 'Warning', *args)
+        return self.state(self.warning_lv, self.board_cast_lv, "Log", 'Warning', *args)
 
     def error(self, *args):
-        self.state(self.error_lv, self.board_cast_lv, "Log", 'Error', *args)
+        return self.state(self.error_lv, self.board_cast_lv, "Log", 'Error', *args)
 
     def critical(self, *args):
-        self.state(self.critical_lv, self.board_cast_lv, "Log", 'Critical', *args)
+        return self.state(self.critical_lv, self.board_cast_lv, "Log", 'Critical', *args)
 
     # ----------------------------------------------------------------------------------------------
     # 設置需要廣播的等級
-    def set_board_cast_lv(self, Lv):
-        if (Lv <= -1):
+    def set_board_cast_lv(self, lv):
+        if lv <= -1:
             self.board_cast_lv = 3
         else:
-            self.board_cast_lv = Lv
+            self.board_cast_lv = lv
+        return self.board_cast_lv
 
-    # 設置是否顯示時間
-    def set_time_able(self, Time_Able):
-        self.time = Time_Able
+        # 設置是否顯示時間
 
-    # ----------------------------------------------------------------------------------------------
+    def set_time_able(self, time_able):
+        self.time = time_able
+        return self.time
+
+        # ----------------------------------------------------------------------------------------------
+
     # 用來印出消息
     def state(self, lv1, lv2, log_file_name, error, *args):
+
         try:
             if lv1 >= lv2 and self.time is True:
                 text = ''
-                text += (datetime.datetime.now().strftime('%Y:%m:%d:%H:%M:%S') + '\t')
-                text += ('\t' + str(error) + ': ' + str(args))
+                text += (datetime.datetime.now().strftime('%Y:%m:%d:%H:%M:%S') + ':')
+                text += (str(error) + ':' + str(args))
                 print("Log in file " + text)
                 self.save_log(text, log_file_name)
+                return "Log in file " + text
             elif self.critical_lv >= self.board_cast_lv:
-                print("Not log in file ", str(error) + ': ' + str(args))
+                print("Not log in file", str(error) + ':' + str(args))
+                return "Not log in file", str(error) + ':' + str(args)
         except Exception as e:
             print(e)
+        return "Not Run"
 
     # ----------------------------------------------------------------------------------------------
     '''
@@ -96,8 +104,10 @@ class LogSystem:
     def save_log(error_text, log_name):
         with open(log_name, 'a')as File:
             File.write(error_text + '\n')
+        return error_text + log_name
 
     @staticmethod
     def clean_log(log_name):
         with open(log_name, 'w')as File:
             File.write('')
+        return log_name
