@@ -12,7 +12,6 @@ class TestLogSystem(unittest.TestCase):
         pass
 
     def test_set_broadcast_lv(self):
-        num = 0
         for num in range(5):
             self.assertEqual(JELogSystem.LogSystem().set_board_cast_lv(num), num)
 
@@ -25,8 +24,10 @@ class TestLogSystem(unittest.TestCase):
         self.assertNotEqual(JELogSystem.LogSystem().warning(), "Not Run")
         self.assertNotEqual(JELogSystem.LogSystem().error(), "Not Run")
         self.assertNotEqual(JELogSystem.LogSystem().critical(), "Not Run")
+        self.assertNotEqual(JELogSystem.LogSystem().everything_broken(), "Not Run")
 
 
 if __name__ == '__main__':
     suite = (unittest.TestLoader().loadTestsFromTestCase(TestLogSystem))
     unittest.TextTestRunner(verbosity=2).run(suite)
+

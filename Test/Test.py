@@ -9,3 +9,4 @@ if __name__ == '__main__':
     a.warning("0")
     a.error("0")
     a.critical("0")
+    a.everything_broken("0")
