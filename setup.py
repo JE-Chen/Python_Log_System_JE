@@ -5,7 +5,7 @@ with open("README.md", "r") as README:
 
 setuptools.setup(
     name="JELogSystem",
-    version="0.0.0.0.9",
+    version="0.0.0.0.10",
     author="JE-Chen",
     author_email="zenmailman@gmail.com",
     description="JE use LogSystem",
@@ -22,5 +22,5 @@ setuptools.setup(
     ]
 )
 
-#sdist bdist_wheel
-#python -m twine upload dist/*
+# python setup.py sdist bdist_wheel
+# python -m twine upload dist/*

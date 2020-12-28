@@ -5,12 +5,6 @@ import JELogSystem
 
 class TestLogSystem(unittest.TestCase):
 
-    def setUp(self) -> None:
-        pass
-
-    def tearDown(self) -> None:
-        pass
-
     def test_set_broadcast_lv(self):
         for num in range(5):
             self.assertEqual(JELogSystem.LogSystem().set_board_cast_lv(num), num)
@@ -30,4 +24,3 @@ class TestLogSystem(unittest.TestCase):
 if __name__ == '__main__':
     suite = (unittest.TestLoader().loadTestsFromTestCase(TestLogSystem))
     unittest.TextTestRunner(verbosity=2).run(suite)
-
