@@ -1,11 +1,13 @@
 import datetime
 import json
+import threading
 
 
-class LogSystem:
+class LogSystem(threading.Thread):
 
-    def __init__(self):
-
+    def __init__(self, lock):
+        super().__init__()
+        self.lock = lock
         self.normal = 0
         self.info = 1
         self.debug = 2
@@ -73,14 +75,16 @@ class LogSystem:
             except Exception as e:
                 print(e)
 
-    @staticmethod
-    def save_log(error_text: str, log_name: str) -> str:
+    def save_log(self, error_text: str, log_name: str) -> str:
+        self.lock.acquire()
         with open(log_name, 'a')as File:
             File.write(error_text + '\n')
+        self.lock.release()
         return error_text + log_name
 
-    @staticmethod
-    def clean_log(log_name: str) -> str:
+    def clean_log(self, log_name: str) -> str:
+        self.lock.acquire()
         with open(log_name, 'w')as File:
             File.write('')
+        self.lock.release()
         return log_name
